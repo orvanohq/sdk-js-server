@@ -22,3 +22,5 @@ extend-exclude = [
 ]
 
 [default.extend-words]
+# Rule ID prefix from spec 0005 (SIZ-1, SIZ-2).
+SIZ = "SIZ"
