@@ -1,0 +1,63 @@
+{
+  "name": "@orvano/server",
+  "version": "0.0.0",
+  "description": "The Orvano server SDK for Node, Cloudflare Workers, Deno, and Bun. It holds a secret key: never ship it to a browser or a device.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orvanohq/sdk-js-server.git",
+    "directory": "packages/server"
+  },
+  "files": [
+    "dist",
+    "NOTICE"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "./dist/browser-guard.js"
+  ],
+  "exports": {
+    ".": {
+      "workerd": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "edge-light": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "deno": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "bun": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "node": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "browser": {
+        "types": "./dist/browser-guard.d.ts",
+        "default": "./dist/browser-guard.js"
+      },
+      "react-native": {
+        "types": "./dist/browser-guard.d.ts",
+        "default": "./dist/browser-guard.js"
+      },
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run --project unit",
+    "conformance": "vitest run --project conformance-node --project conformance-workerd"
+  },
+  "engines": {
+    "node": ">=22.12"
+  }
+}

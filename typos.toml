@@ -2,6 +2,7 @@
 # hashes. Add a real word the checker doesn't know under [default.extend-words].
 [files]
 extend-exclude = [
+  ".orvano/",
   "pnpm-lock.yaml",
   "packages.lock.json",
   "console/src/routeTree.gen.ts",

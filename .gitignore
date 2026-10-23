@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+.vitest/
+# The orvano checkout `pnpm regenerate` fetches (spec 0014 RGN-2).
+.orvano/
+# The conformance worker bundle (conformance/workerd.ts builds it).
+.conformance/

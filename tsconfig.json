@@ -1,0 +1,14 @@
+{
+  // The root tool configs, so typed lint can read them. Each package's own tsconfig.json covers its code.
+  "compilerOptions": {
+    "strict": true,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "types": ["node"],
+    "noEmit": true,
+    "skipLibCheck": true
+  },
+  "include": ["*.config.ts"]
+}

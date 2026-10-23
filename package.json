@@ -3,27 +3,36 @@
   "private": true,
   "license": "Apache-2.0",
   "type": "module",
-  "packageManager": "pnpm@12.12.1",
-  "engines": {
-    "node": ">=24.11.0 <25"
-  },
   "scripts": {
     "prepare": "node tooling/scripts/prepare.mjs",
     "check": "vp check && eslint --max-warnings=0 && pnpm -r typecheck",
     "fix": "vp check --fix && eslint --fix",
     "build": "pnpm -r build",
     "test": "pnpm -r test",
-    "size": "size-limit"
+    "size": "size-limit",
+    "regenerate": "node tooling/scripts/regenerate.mjs",
+    "conformance": "pnpm -r conformance"
   },
   "devDependencies": {
+    "@arethetypeswrong/core": "0.18.5",
     "@size-limit/esbuild": "14.2.0",
     "@size-limit/file": "14.2.0",
+    "@types/node": "^24.19.2",
+    "esbuild": "0.28.2",
     "eslint": "10.12.0",
     "eslint-plugin-oxlint": "1.87.0",
     "jiti": "2.7.0",
+    "miniflare": "4.20260730.0",
+    "publint": "0.3.25",
     "size-limit": "14.2.0",
+    "tsdown": "~0.23.1",
     "typescript": "~6.0.3",
     "typescript-eslint": "8.71.2",
-    "vite-plus": "1.1.0"
-  }
+    "vite-plus": "1.1.0",
+    "vitest": "5.0.5"
+  },
+  "engines": {
+    "node": ">=24.11.0 <25"
+  },
+  "packageManager": "pnpm@12.12.1"
 }

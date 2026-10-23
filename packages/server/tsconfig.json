@@ -1,0 +1,10 @@
+{
+  // Spec 0005 TYP-1, BLD-2. Tests and the conformance runner are checked too; they may use Vitest's types.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "types": ["vitest/importMeta"]
+  },
+  "include": ["src", "test", "conformance", "*.config.ts"]
+}
