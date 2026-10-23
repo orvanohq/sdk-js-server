@@ -1,0 +1,36 @@
+# Spec 0008 DPB-1, DPB-2 for an SDK repo. export-template.mjs keeps this repo's ecosystems.
+# Weekly on Monday, 3 day cooldown (pnpm's minimumReleaseAge), titles as `build(deps): bump ...` (GIT-2).
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 3
+    commit-message:
+      prefix: build
+      include: scope
+    groups:
+      # DPB-2: the lint and format toolchain moves together.
+      toolchain:
+        patterns: [vite-plus, eslint, eslint-plugin-*, typescript-eslint]
+        update-types: [minor, patch]
+      npm-minor-and-patch:
+        update-types: [minor, patch]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 3
+    commit-message:
+      prefix: build
+      include: scope
+    groups:
+      actions-minor-and-patch:
+        update-types: [minor, patch]
