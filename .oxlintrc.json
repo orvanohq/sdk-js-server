@@ -1,13 +1,5 @@
 {
-  "plugins": [
-    "eslint",
-    "typescript",
-    "unicorn",
-    "oxc",
-    "import",
-    "promise",
-    "vitest"
-  ],
+  "plugins": ["eslint", "typescript", "unicorn", "oxc", "import", "promise", "vitest"],
   "categories": {
     "correctness": "error",
     "suspicious": "error",
@@ -32,28 +24,19 @@
   },
   "overrides": [
     {
-      "files": [
-        "**/*.config.ts",
-        "**/*.config.mts"
-      ],
+      "files": ["**/*.config.ts", "**/*.config.mts"],
       "rules": {
         "import/no-default-export": "off"
       }
     },
     {
-      "files": [
-        "**/*.test.ts",
-        "test/**",
-        "conformance/**"
-      ],
+      "files": ["**/*.test.ts", "test/**", "conformance/**"],
       "rules": {
         "typescript/no-non-null-assertion": "off"
       }
     },
     {
-      "files": [
-        "tooling/scripts/**"
-      ],
+      "files": ["tooling/scripts/**"],
       "rules": {
         "no-console": "off"
       }
