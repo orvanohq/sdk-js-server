@@ -10,6 +10,7 @@ import generated from "./scenarios.generated.json" with { type: "json" };
 import skips from "./skip.json" with { type: "json" };
 
 const config = inject("conformance");
+const project = inject("project");
 const scenarios = (generated as { scenarios: Scenario[] }).scenarios;
 const skipList = skips as { id: string; reason: string; issue: string }[];
 const ran = new Set<string>();
@@ -48,7 +49,12 @@ describe(`0014 AC-17, AC-18: @orvano/server conformance in workerd`, () => {
       if (miniflare === undefined) throw new Error("Miniflare did not start.");
       const answer = await miniflare.dispatchFetch("http://worker/run", {
         method: "POST",
-        body: JSON.stringify({ scenario, stubUrl: config.stubUrl, liveUrl: config.liveUrl }),
+        body: JSON.stringify({
+          scenario,
+          stubUrl: config.stubUrl,
+          liveUrl: config.liveUrl,
+          project,
+        }),
       });
       expect(await answer.json()).toEqual([]);
     });

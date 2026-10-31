@@ -12,6 +12,7 @@ const servers = {
   partial: process.env.ORVANO_CONFORMANCE_PARTIAL === "1",
 };
 const conformance = ["conformance/conformance.test.ts"];
+const globalSetup = ["conformance/bootstrap.ts"];
 
 // Spec 0005 SQA-1, SQA-3: unit tests in Node; the conformance suite in Node and in workerd (through Miniflare).
 const config: ViteUserConfig = defineConfig({
@@ -27,6 +28,7 @@ const config: ViteUserConfig = defineConfig({
         test: {
           name: "conformance-node",
           include: conformance,
+          globalSetup,
           provide: { conformance: { ...servers, runtime: "node" } },
         },
       },
@@ -36,6 +38,7 @@ const config: ViteUserConfig = defineConfig({
           name: "conformance-workerd",
           include: ["conformance/workerd.test.ts"],
           testTimeout: 30_000,
+          globalSetup,
           provide: { conformance: { ...servers, runtime: "workerd" } },
         },
       },
