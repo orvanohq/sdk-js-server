@@ -17,6 +17,7 @@ const skipList = skips as { id: string; reason: string; issue: string }[];
 const servers: Servers = {
   stubUrl: config.stubUrl,
   liveUrl: config.liveUrl,
+  project: inject("project"),
   fetch: (request) => globalThis.fetch(request),
 };
 const ran = new Set<string>();
