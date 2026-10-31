@@ -33,6 +33,11 @@ export function Health(): never {
 }
 
 /** @public */
+export function Keys(): never {
+  return refuse();
+}
+
+/** @public */
 export class OrvanoError extends Error {
   constructor() {
     super(message);
