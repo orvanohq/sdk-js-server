@@ -38,6 +38,8 @@ You need Node 24 (`.node-version`), pnpm, and Docker (or Podman) for the conform
   pnpm conformance
   ```
 
+  `pnpm conformance:nightly` runs the same suite inside Deno and Bun, so it needs both on your `PATH`. CI runs those and Node 22 and 26 every night (`.github/workflows/nightly.yml`), and a failed night opens an issue.
+
   A scenario that requires a project gets one from `orvano admin bootstrap-project`, run through `docker compose exec` in that stack (spec 0017 SDK-4).
 
   A scenario that can't run here goes in `packages/server/conformance/skip.json` with a reason and an issue link; any other scenario that doesn't run fails the suite. Set `ORVANO_CONFORMANCE_PARTIAL=1` when you run a few with `-t`.

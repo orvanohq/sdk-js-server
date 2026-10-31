@@ -55,7 +55,8 @@
     "build": "tsdown",
     "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run --project unit",
-    "conformance": "vitest run --project conformance-node --project conformance-workerd"
+    "conformance": "vitest run --project conformance-node --project conformance-workerd",
+    "conformance:nightly": "vitest run --project conformance-deno --project conformance-bun"
   },
   "engines": {
     "node": ">=22.12"
