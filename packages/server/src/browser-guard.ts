@@ -1,7 +1,9 @@
 // Spec 0005 KEY-1: what a browser or React Native bundle gets instead of @orvano/server (the `browser` and
 // `react-native` conditions, NPM-2). It throws as soon as it is imported, and exports a stub under every public value
 // name, so a bundler reports this message rather than a missing export. test/browser-guard.test.ts checks the names
-// against src/index.ts, so a new service fails that test until its stub is added here.
+// against src/index.ts. Services come from the generator, so a new one needs no hand edit here.
+export * from "./generated/browser-stubs.js";
+
 const message =
   "@orvano/server holds a secret key and must never ship to a browser or a device. Use @orvano/client there.";
 
@@ -24,16 +26,6 @@ export const OrvanoErrorCodes: Readonly<Record<string, string>> = {};
 
 /** @public */
 export function createClient(): never {
-  return refuse();
-}
-
-/** @public */
-export function Health(): never {
-  return refuse();
-}
-
-/** @public */
-export function Keys(): never {
   return refuse();
 }
 

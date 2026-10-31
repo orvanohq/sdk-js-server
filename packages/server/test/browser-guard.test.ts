@@ -2,6 +2,7 @@
 // Spec 0005 KEY-1: the browser and React Native guard throws on import and stubs every public value name.
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import * as generatedStubs from "../src/generated/browser-stubs.js";
 import * as entry from "../src/index.js";
 
 const guardSource = readFileSync(new URL("../src/browser-guard.ts", import.meta.url), "utf8");
@@ -17,6 +18,16 @@ describe("the browser guard", () => {
     const stubs = [...guardSource.matchAll(/^export (?:const|function|class) (\w+)/gm)].map(
       (found) => found[1],
     );
-    expect(new Set(stubs)).toEqual(new Set(Object.keys(entry)));
+    expect(new Set([...stubs, ...Object.keys(generatedStubs)])).toEqual(
+      new Set(Object.keys(entry)),
+    );
+  });
+
+  it("throws the same message from a generated stub", () => {
+    for (const stub of Object.values(generatedStubs)) {
+      expect(stub).toThrow(
+        /must never ship to a browser or a device\. Use @orvano\/client there\./,
+      );
+    }
   });
 });
