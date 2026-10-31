@@ -5,6 +5,16 @@ packages:
 
 minimumReleaseAge: 4320
 
+# pnpm audit (spec 0006 SUP-5) ignores an advisory only here, with the reason and when to remove it.
+auditConfig:
+  ignoreGhsas:
+    # minimatch: denial of service through glob part amplification. Reached only through dev tools (ESLint and others
+    # that glob the repo's own files; `pnpm audit --prod` is clean, and nothing ships in the package). The advisory,
+    # published 2026-10-30, patches only 11.0.1, and ESLint's tree needs the older lines, so no override fits
+    # (2026-10-30). Remove when those packages take a patched minimatch. Expires 2026-11-29 (spec 0006 SUP-5: at most
+    # 30 days); check again then and renew or remove.
+    - GHSA-g3hv-75wg-m249
+
 allowBuilds:
   # Denied: esbuild (the conformance worker bundle, size-limit, tsdown, and Vitest) gets its binary from a platform package; its install
   # script only checks that binary.
