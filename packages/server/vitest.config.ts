@@ -13,8 +13,19 @@ const servers = {
 };
 const conformance = ["conformance/conformance.test.ts"];
 const globalSetup = ["conformance/bootstrap.ts"];
+const spawned = (runtime: "deno" | "bun") => ({
+  extends: true,
+  test: {
+    name: `conformance-${runtime}`,
+    include: ["conformance/spawned.test.ts"],
+    testTimeout: 30_000,
+    globalSetup,
+    provide: { conformance: { ...servers, runtime } },
+  },
+});
 
-// Spec 0005 SQA-1, SQA-3: unit tests in Node; the conformance suite in Node and in workerd (through Miniflare).
+// Spec 0005 SQA-1, SQA-3: unit tests in Node; the conformance suite in Node and in workerd (through Miniflare) on every
+// PR, and in Deno and Bun nightly (each started by conformance/spawned.test.ts).
 const config: ViteUserConfig = defineConfig({
   define: { __ORVANO_SDK_VERSION__: JSON.stringify(version) },
   test: {
@@ -42,6 +53,8 @@ const config: ViteUserConfig = defineConfig({
           provide: { conformance: { ...servers, runtime: "workerd" } },
         },
       },
+      spawned("deno"),
+      spawned("bun"),
     ],
   },
 });

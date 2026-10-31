@@ -11,7 +11,8 @@
     "test": "pnpm -r test",
     "size": "size-limit",
     "regenerate": "node tooling/scripts/regenerate.mjs",
-    "conformance": "pnpm -r conformance"
+    "conformance": "pnpm -r conformance",
+    "conformance:nightly": "pnpm -r conformance:nightly"
   },
   "devDependencies": {
     "@arethetypeswrong/core": "0.18.5",
